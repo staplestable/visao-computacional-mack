@@ -1,3 +1,4 @@
+Este repositório é destinado ao blog sobre tópicos relacionadas à matéria de Computação Visual durante o sétimo semestre de Ciência da Computação da Universidade Presbiteriana Mackenzie.
 ## Membros
 | Nome | RA |
 | ----------- | ----------- |
