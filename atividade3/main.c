@@ -133,7 +133,7 @@ int main(int argc, char **argv){
         "{\n"
         "   gl_Position = vec4(aPos, 1.0);\n"
         "   ourColor = aColor;\n"
-        "   TexCoord = aTexCoord;\n"
+        "   TexCoord = vec2(aTexCoord.x, 1.0 - aTexCoord.y);\n"
         "}\0";
     const char *fragmentShaderSource = "#version 330 core\n"
         "out vec4 FragColor;\n"
