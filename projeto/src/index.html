@@ -5,15 +5,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial de WebGL</title>
-    <style>
-        body{
-            margin: 0
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head> 
   
 <body>
-    <script src="./js/scripts.js" type="module"></script>
+    <header>
+        <h1><strong>WebGL com Three</strong></h1>
+        <section id="Membros">
+            <p>Projeto da disciplina de Computação Visual - Universidade Presbiteriana Mackenzie</p>
+            <p>Lucas Damasceno da Cunha Lima     - 10389222
+            <br>Thiago Aidar Figueiredo          - 10389723</p>
+        </section>
+    </header>
+    <main>
+        <section class="topico">
+            <h2>Criando uma cena</h2>
+                <p>
+                    Três componentes são necessários para realizar o display de uma cena: câmera, cena e renderizador.
+                    A cena pode<br> ser criada pelo comando <code> new THREE.Scene()</code> e o renderizador pelo comando
+                    <code>new THREE.WegGLRenderer()</code>.
+                </p>
+                <p>
+                    O construtor de uma câmera é definido pelo comando <code>new THREE.PerspectiveCamera()</code>, que recebe
+                     requer os<br> parametros de FOV, aspect, near e far. Aspect seria o <em>view frustrum</em> da câmera, normalmente definido pela relação <br>de largura / altura.
+                </p>
+                <figure>
+                    <img id="viewFrustrum" src="../images/ViewFrustum.svg.png" alt="View Frustrum">
+                    <figcaption>View Frustrum</figcaption>
+                    <p id="PerpRef">
+                        By <a href="//commons.wikimedia.org/wiki/User:MithrandirMage" title="User:MithrandirMage">MithrandirMage</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=19952662">Link</a>
+                    </p>
+                </figure>
+               <p>Além dos parametros inciais do construtor, uma <code>PerspectiveCamera</code> pode conter outras propriedades como zoom e foco,<br> além de possuir métodos próprios. Para saber mais, acesse: 
+                    <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera" type="_blank">
+                        https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
+                    </a>.
+                </p> 
+        </section>
+        <hr>
+        <section class="topico">
+            <h2>Adicionando Geometrias</h2>
+            <p> Objetos podem ser construidos com <code>new THREE.Mesh</code>, com uma geometria e seu material. É uma classe que representa objetos baseados em polígonos mesh triangulares e é servida como base para várias outras classes como por exemplo a SkinnedMesh. </p>
+            <p>A geometria é definida pelo tipo <code>BufferGeometry</code> que representa graficamente pontos geométricos. Ele inclui as posições dos vértices, índices de faces, normais, cores, UVs e atributos personalizados em buffers, reduzindo o custo de passar todos esses dados para a GPU. </p>
+            <p> Abaixo, temos um exemplo de código para formar um quadrado na cena.</p>
+            <p class="Pcode">
+                const vertices = new Float32Array( [<br>
+                -1.0, -1.0,  0.0, <br>
+                1.0, -1.0,  0.0, <br>
+                1.0,  1.0,  0.0, <br>
+                    
+                1.0,  1.0,  0.0, <br>
+                -1.0,  1.0,  0.0, <br>
+                -1.0, -1.0,  0.0  <br>
+                ]);
+            </p>
+            <p>Esse array pode ser utilizado para definir a forma de um <em>GeometryBuffer</em>, com o método <code> .setAttribute('position', new THREE.BufferAttribute( vertices, 3 ))</code>. Para adicionar quaisquer elementos a cena, usar o método da cena <code>.add()</code>. Podem adicionados os eixos (X,Y,Z) para facilitar a visualização dos objetos na cena com <code>new THREE.AxesHelper() </code>, além de ser possível alterar a posição da camera como <code>camera.position.set()</code> </p>
+            <section class="CodeWindow">
+                <div id="geometry" style="width: 40%; height: 400px;"></div>
+                <script src="./js/ThreeCodes/geometry.js" type="module"></script>
+            </section>
+        </section>
+        <hr>
+        <section class="topico">
+            <h2>Rotações e orbita</h2>
+            <p> Um objeto Mesh pode ser rotacionado pelo eixo x com <code>rotation.x</code>, bastando alterar x ao final para y e z para rotacionar nos outros eixos. Essa rotação ocorre apenas um unica vez, porém é possivel deixá-la em <em>loop</em> por <code>renderer.setAnimationLoop()</code>.</p>
+            <p>Outra funcionalidade possível seria se movimentar pela cena, pelos botões do <em>mouse</em>, ao instânciar <code>new OrbitControls(camera, renderer.domElement)</code>.</p>
+            <section class="CodeWindow">
+                <div id="rotation" style="width: 40%; height: 400px;"></div>
+                <script src="./js/ThreeCodes/rotate.js" type="module"></script>
+            </section>
+        </section>
+        <hr>
+        <section class="topico">
+            <h2>Carregando objetos e iluminação</h2>
+            <p>O three.js possui diferentes métodos para carregar modelos em formatos diferentes. No exemplo abaixo, foi utilizado glTF.</p>
+            <p>O glTF™ é uma especificação <em>royalty-free</em> para transmissão e carregamento eficientes de conteúdo 3D, sendo fornecidos no formato JSON (.gltf) ou binário (.glb). Os arquivos externos armazenam texturas (.jpg, .png) e dados binários adicionais. </p>
+            <p>Para os diferentes métodos de carregar modelos, é nececessário o <em>import</em> explicito. Todos possuem um construtor inicial, no caso do glTF seria o <code>new GLTFLoader()</code>. Após gerar o <em>loader</em>, pode se utilizar o método <code>.load()</code> para carregar um arquivo ou URL do formato.</p>
+            <section class="CodeWindow">
+                <div id="Obj" style="width: 40%; height: 400px;"></div>
+                <script src="./js/ThreeCodes/loaderObj.js" type="module"></script>
+            </section>
+            <p>Existem diferentes maneiras de se emular uma fonte de luz sendo uma delas o <code>PointLight</code>, que emite luz em todas as direções partindo de uma coordenada, e esta pode ser especificada por <code>.position.set()</code>.</p>
+        </section>
+        <hr>
+        <section class="topico">
+            <h2>Translação de Objetos</h2>
+            <p>Uma translação de um objeto é possivel por meio dos métodos <code>translateX,translateY, translateZ</code>. No exemplo abaixo, usamos deste método para o eixo X junto uma rotação no eixo Y, para mover em circulo o objeto. </p>
+            <p>Uma última alteração seria na cor do <em>background</em> da cena, alterado para um tom de azul pelo atributo da cena <code>scene.background = new THREE.Color(0x4DBCD8)</code>.</p>
+            <section class="CodeWindow">
+                <div id="Translate" style="width: 40%; height: 400px;"></div>
+                <script src="./js/ThreeCodes/translate.js" type="module"></script>
+            </section>
+            <p></p>
+        </section>
+    </main>
+    
+    
+    <footer>
+        <h2>Referências</h2>
+            <p>Three.js:
+                <a href="https://threejs.org/docs/#manual/en/en" type="_blank">
+                    Manual Three.js
+                </a>
+            </p>
+            <p> KhronosGroup - modelos glTF:
+                <a href="https://github.com/KhronosGroup/glTF-Sample-Models" type="_blank">
+                    Repositório no GitHub
+                </a>
+            </p>
+            <p> Khronos - glTF:
+                <a href="https://www.khronos.org/gltf/" type="_blank">
+                    Site oficial
+                </a>
+            </p>
+    </footer>
 </body> 
   
-</html> 
+</html> <!-- TODO: ADICIONAR LINKS EMBAIXO DOS CODIGOS PARA O GITHUB!-->
