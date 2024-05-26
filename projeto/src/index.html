@@ -13,7 +13,8 @@
         <h1><strong>WebGL com Three</strong></h1>
         <section id="Membros">
             <p>Projeto da disciplina de Computação Visual - Universidade Presbiteriana Mackenzie</p>
-            <p>Lucas Damasceno da Cunha Lima     - 10389222
+            <p>07G - 1º semestre 2024<br>
+                Lucas Damasceno da Cunha Lima     - 10389222
             <br>Thiago Aidar Figueiredo          - 10389723</p>
         </section>
     </header>
@@ -22,21 +23,21 @@
             <h2>Criando uma cena</h2>
                 <p>
                     Três componentes são necessários para realizar o display de uma cena: câmera, cena e renderizador.
-                    A cena pode<br> ser criada pelo comando <code> new THREE.Scene()</code> e o renderizador pelo comando
+                    A cena pode ser criada pelo comando <code> new THREE.Scene()</code> e o renderizador pelo comando
                     <code>new THREE.WegGLRenderer()</code>.
                 </p>
                 <p>
                     O construtor de uma câmera é definido pelo comando <code>new THREE.PerspectiveCamera()</code>, que recebe
-                     requer os<br> parametros de FOV, aspect, near e far. Aspect seria o <em>view frustrum</em> da câmera, normalmente definido pela relação <br>de largura / altura.
+                     requer os parametros de FOV, aspect, near e far. Aspect seria o <em>view frustrum</em> da câmera, normalmente definido pela relação de largura / altura.
                 </p>
                 <figure>
                     <img id="viewFrustrum" src="../images/ViewFrustum.svg.png" alt="View Frustrum">
                     <figcaption>View Frustrum</figcaption>
-                    <p id="PerpRef">
+                    <p class="PerpRef">
                         By <a href="//commons.wikimedia.org/wiki/User:MithrandirMage" title="User:MithrandirMage">MithrandirMage</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=19952662">Link</a>
                     </p>
                 </figure>
-               <p>Além dos parametros inciais do construtor, uma <code>PerspectiveCamera</code> pode conter outras propriedades como zoom e foco,<br> além de possuir métodos próprios. Para saber mais, acesse: 
+               <p>Além dos parametros inciais do construtor, uma <code>PerspectiveCamera</code> pode conter outras propriedades como zoom e foco, além de possuir métodos próprios. Para saber mais, acesse: 
                     <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera" type="_blank">
                         https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
                     </a>.
@@ -63,6 +64,11 @@
             <section class="CodeWindow">
                 <div id="geometry" style="width: 40%; height: 400px;"></div>
                 <script src="./js/ThreeCodes/geometry.js" type="module"></script>
+                <p class="PerpRef">Disponível em:
+                    <a href="https://github.com/staplestable/visao-computacional-mack/blob/main/projeto/src/js/ThreeCodes/geometry.js" type="_blank">
+                        Código no GitHub
+                    </a>
+                </p>
             </section>
         </section>
         <hr>
@@ -73,6 +79,11 @@
             <section class="CodeWindow">
                 <div id="rotation" style="width: 40%; height: 400px;"></div>
                 <script src="./js/ThreeCodes/rotate.js" type="module"></script>
+                <p class="PerpRef">Disponível em:
+                    <a href="https://github.com/staplestable/visao-computacional-mack/blob/main/projeto/src/js/ThreeCodes/rotate.js" type="_blank">
+                        Código no GitHub
+                    </a>
+                </p>
             </section>
         </section>
         <hr>
@@ -84,6 +95,11 @@
             <section class="CodeWindow">
                 <div id="Obj" style="width: 40%; height: 400px;"></div>
                 <script src="./js/ThreeCodes/loaderObj.js" type="module"></script>
+                <p class="PerpRef">Disponível em:
+                    <a href="https://github.com/staplestable/visao-computacional-mack/blob/main/projeto/src/js/ThreeCodes/loaderObj.js" type="_blank">
+                        Código no GitHub
+                    </a>
+                </p>
             </section>
             <p>Existem diferentes maneiras de se emular uma fonte de luz sendo uma delas o <code>PointLight</code>, que emite luz em todas as direções partindo de uma coordenada, e esta pode ser especificada por <code>.position.set()</code>.</p>
         </section>
@@ -95,6 +111,11 @@
             <section class="CodeWindow">
                 <div id="Translate" style="width: 40%; height: 400px;"></div>
                 <script src="./js/ThreeCodes/translate.js" type="module"></script>
+                <p class="PerpRef">Disponível em:
+                    <a href="https://github.com/staplestable/visao-computacional-mack/blob/main/projeto/src/js/ThreeCodes/translate.js" type="_blank">
+                        Código no GitHub
+                    </a>
+                </p>
             </section>
             <p></p>
         </section>
@@ -121,4 +142,4 @@
     </footer>
 </body> 
   
-</html> <!-- TODO: ADICIONAR LINKS EMBAIXO DOS CODIGOS PARA O GITHUB!-->
+</html> 
