@@ -1,8 +1,6 @@
 
 Entrar no diretorio projeto e executar os seguintes comandos:
 
-npm install parcel
-npm install three
-npm start
+```npm install ```
 
-Remove-Item -Recurse -Force .parcel-cache
+```npm start```
